@@ -6,7 +6,7 @@ output: html_document
 ---
 
 
-# install packages
+### install packages
 install.packages("tm")
 library(tm)
 install.packages("wordcloud")
@@ -14,35 +14,35 @@ library(wordcloud)
 install.packages("data.table")
 library(data.table)
 
-# Load data and check data
+### Load data and check data
 
 myData <- read.delim(file.choose(), stringsAsFactors = FALSE)
 head(myData)
 
 
-# combining all data together
+### combining all data together
 
 combText <- paste(myData$Article, collapse = "")  
 
-# setting up source and corpus
+### setting up source and corpus
 
 combText_vector <- VectorSource(combText)
 combText_corpus <- Corpus(combText_vector)
 
-# cleaning corpur for mapping
+### cleaning corpur for mapping
 combText_corpus <- tm_map(combText_corpus,content_transformer(tolower))
 combText_corpus <- tm_map(combText_corpus, removePunctuation)
 combText_corpus <- tm_map(combText_corpus, stripWhitespace)
 combText_corpus <- tm_map(combText_corpus, removeWords, stopwords("english"))
 
-# making a document term matrix 
+### making a document term matrix 
 myDocMatrix <- DocumentTermMatrix(combText_corpus)
 myDocMatrix1 <- as.matrix(myDocMatrix)
 
-# counting term statistics
+### counting term statistics
 termFrequency <- colSums(myDocMatrix1)
 
-# ploting word cloud with frequency
+### ploting word cloud with frequency
 
 words <- names(termFrequency)
 wordcloud(words, termFrequency, colors = "red")
