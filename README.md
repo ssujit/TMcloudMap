@@ -1,6 +1,6 @@
 # TMcloudMap
 
-## a simple script to make a word cloud map. It is useful to find the key words in a document
+## a simple script to make a word cloud map. It is useful to find out frequently appread key words in a document.
 
 Text data has been taken from a published article that should be refere as:
 
